@@ -6,7 +6,7 @@
 #    By: ialvarez <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 18:00:35 by ialvarez          #+#    #+#              #
-#    Updated: 2021/06/07 19:09:40 by ialvarez         ###   ########.fr        #
+#    Updated: 2021/06/24 20:46:47 by ialvarez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCS	= ft_printf.c ft_return.c ft_char2str.c ft_vsprintf.c ft_simple.c
 OBJS	= ${SRCS:.c=.o}
 
 ${NAME}:	${OBJS} ${LIBFT_NAME}
-			${GCC} -o printf ${CFLAGS} ${SRCS} ${LIBFT_NAME}
+			${GCC} -o printf ${CFLAGS} ${SRCS} ${LIBFT_NAME} #-fsanitize=address
 		##	ar -rcs ${NAME} ${OBJS}
 
 all:		${NAME}
