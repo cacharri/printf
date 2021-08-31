@@ -6,7 +6,7 @@
 /*   By: ialvarez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 19:49:23 by ialvarez          #+#    #+#             */
-/*   Updated: 2021/06/15 17:59:06 by ialvarez         ###   ########.fr       */
+/*   Updated: 2021/08/31 20:11:07 by ialvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 char  *ft_char2str(char chr)
 {
-	char *str;
+	char *st;
 
-	str = malloc(sizeof(char) * 2);
-	*str = chr;
-	str[1] = '\0';
-	return (str);
+	//write(1, "a", 1);
+	st = malloc(sizeof(char) * 2);
+	*st = chr;
+	st[1] = '\0';
+	return (st);
 }
