@@ -6,7 +6,7 @@
 /*   By: ialvarez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 20:00:55 by ialvarez          #+#    #+#             */
-/*   Updated: 2021/08/31 21:02:59 by ialvarez         ###   ########.fr       */
+/*   Updated: 2021/09/01 21:27:55 by ialvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int main ()
 {
   // int r = 0;
   // int i = -555;
-   int j = -7983;
+   int j = 325456;
    //char *c = "cach";
    int ret = 0;
    //ret  = ft__printf("%dhola%d%d%s-->%cALON",r,i,j,x,c);
-   ret  = ft_printf("%d", j);
-  // printf("%05d\n", j);
-   system("leaks printf");
+   ret  = ft_printf("Fake [%x]\n", j);
+   printf("Original [%x]\n", j);
+   //system("leaks printf");
 }

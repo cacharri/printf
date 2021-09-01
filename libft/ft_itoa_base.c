@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialvarez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 19:50:28 by ialvarez          #+#    #+#             */
-/*   Updated: 2021/09/01 19:17:13 by ialvarez         ###   ########.fr       */
+/*   Updated: 2021/09/01 21:27:52 by ialvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-static	int	ft_size(int n)
+static	int	ft_size(unsigned long n)
 {
 	int	c;
 
@@ -27,30 +28,31 @@ static	int	ft_size(int n)
 	return (c);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa_base(unsigned long n, int dh)
 {
 	int		len;
-	long	pus;
 	char	*num;
+	char	*base;
 
+	printf("a");
+	base = ft_strdup("0123456789abcdef");
 	len = ft_size(n);
-	pus = n;
 	num = (char *)malloc((len + 1) * sizeof(char));
 	if (!num)
 		return (NULL);
 	num[len] = '\0';
-	if (pus < 0)
+	if (n < 0)
 	{
 		num[0] = '-';
-		pus = pus * -1;
+		n = n * -1;
 	}
-	if (pus == 0)
+	if (n == 0)
 		num[0] = '0';
-	while (pus != 0)
+	while (n != 0)
 	{
 		len--;
-		num[len] = (pus % 10) + '0';
-		pus = pus / 10;
+		num[len] = base[n % dh];
+		n = n / dh;
 	}
 	return (num);
 }

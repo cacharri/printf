@@ -6,7 +6,7 @@
 /*   By: ialvarez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 19:47:46 by ialvarez          #+#    #+#             */
-/*   Updated: 2021/08/31 21:03:03 by ialvarez         ###   ########.fr       */
+/*   Updated: 2021/09/01 20:32:26 by ialvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ int ft_vsprintf(const char *format, va_list a_list, t_flags *fl)
 			//	printf("susmuertos %s\n", tmp);
 			}
 		}
+		else
+			write(1, &format[fl->o], 1);
 		fl->o += 1;
 	}
 	fl->o -= 1;

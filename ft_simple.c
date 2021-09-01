@@ -6,7 +6,7 @@
 /*   By: ialvarez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 19:14:45 by ialvarez          #+#    #+#             */
-/*   Updated: 2021/08/31 21:03:00 by ialvarez         ###   ########.fr       */
+/*   Updated: 2021/09/01 21:27:49 by ialvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,17 @@ char	*ft_simple(const char *format, va_list a_list, t_flags *fl)
 	}
 	else if (format[fl->o] == 'u')
 	{
-		some = ft_itoa(va_arg(a_list, int));
+		some = ft_itoa_base((unsigned int)va_arg(a_list, int), 10);
+		str = some;
+	}
+	else if (format[fl->o] == 'X')
+	{
+		str = some;
+	}
+	else if (format[fl->o] == 'x')
+	{
+		printf("llego\n");
+		some = ft_itoa_base(va_arg(a_list, int), 16);
 		str = some;
 	}
 	ft_putstr_fd(str, 1);
