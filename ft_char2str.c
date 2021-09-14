@@ -5,18 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialvarez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 19:49:23 by ialvarez          #+#    #+#             */
-/*   Updated: 2021/08/31 20:11:07 by ialvarez         ###   ########.fr       */
+/*   Created: 2021/09/10 18:03:36 by ialvarez          #+#    #+#             */
+/*   Updated: 2021/09/13 17:30:23 by ialvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-char  *ft_char2str(char chr)
+char	*ft_char2str(char chr)
 {
-	char *st;
+	char	*st;
 
-	//write(1, "a", 1);
 	st = malloc(sizeof(char) * 2);
 	*st = chr;
 	st[1] = '\0';

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_itoa_base_x.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialvarez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 19:50:28 by ialvarez          #+#    #+#             */
-/*   Updated: 2021/09/14 16:26:06 by ialvarez         ###   ########.fr       */
+/*   Updated: 2021/09/13 17:03:05 by ialvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ static	int	ft_size(unsigned long n, int dh)
 	return (c);
 }
 
-char	*ft_itoa_base(unsigned long n, int dh)
+char	*ft_itoa_base_x(unsigned long n, int dh)
 {
 	int		len;
 	char	*num;
 	char	*base;
 
-	base = "0123456789abcdef";
+	base = "0123456789ABCDEF";
 	len = ft_size(n, dh);
 	num = (char *)malloc((len + 1) * sizeof(char));
 	if (!num)
