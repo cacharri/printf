@@ -6,7 +6,7 @@
 /*   By: ialvarez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 19:14:45 by ialvarez          #+#    #+#             */
-/*   Updated: 2021/09/14 16:25:58 by ialvarez         ###   ########.fr       */
+/*   Updated: 2021/09/14 18:29:14 by ialvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,18 @@ static void	ft_specifier_triple(const char *format, va_list a_list, t_flags *fl)
 	i = 0;
 	j = 2;
 	if (format[fl->o] == 'X')
-	{
-		fl->some = ft_itoa_base_x((unsigned int)va_arg(a_list, void *), 16);
-		fl->str = fl->some;
-	}
+		fl->str = ft_itoa_base_x((unsigned int)va_arg(a_list, void *), 16);
 	else if (format[fl->o] == 'x')
-	{
-		fl->some = ft_itoa_base((unsigned int)va_arg(a_list, void *), 16);
-		fl->str = fl->some;
-	}
+		fl->str = ft_itoa_base((unsigned int)va_arg(a_list, void *), 16);
 	else if (format[fl->o] == 'p')
 	{
 		fl->some = ft_itoa_base((unsigned long long)va_arg(a_list, void *), 16);
-		fl->str = (char *)malloc((ft_strlen(fl->some) + 2) * sizeof(char));
-		fl->str[0] = '0';
-		fl->str[1] = 'x';
-		while (fl->some[i] != '\0')
-			fl->str[j++] = fl->some[i++];
-		free(fl->str);
+		fl->str = ft_strjoin("0x", fl->some);
+		free(fl->some);
 	}
 }
-static void		ft_putstr_fda(char *s, int fd, t_flags *fl)
+
+static void	ft_putstr_fda(char *s, int fd, t_flags *fl)
 {
 	if (s != NULL)
 		write(fd, s, ft_strlen(s));
@@ -63,25 +54,28 @@ static void		ft_putstr_fda(char *s, int fd, t_flags *fl)
 
 char	*ft_simple(const char *format, va_list a_list, t_flags *fl)
 {
+	char	c;
+
 	if (format[fl->o] == 'c')
 	{
-		fl->some = ft_char2str(va_arg(a_list, int));
-		fl->str = fl->some;
+		c = va_arg(a_list, int);
+		fl->ret += write(1, &c, 1);
 	}
 	else if (format[fl->o] == 'u' || format[fl->o] == 'd'
 		|| format[fl->o] == 'i')
 		ft_dec(format, a_list, fl);
 	else if (format[fl->o] == 's')
-		fl->str = va_arg(a_list, char *);
-	else if (format[fl->o] == '%')
 	{
-		fl->some = ft_char2str(format[fl->o]);
-		fl->str = fl->some;
+		fl->str = va_arg(a_list, char *);
+		if (fl->str == NULL)
+			fl->str = "(null)";
 	}
+	else if (format[fl->o] == '%')
+		fl->str = ft_char2str(format[fl->o]);
 	else if (format[fl->o] == 'X' || format[fl->o] == 'x'
 		|| format[fl->o] == 'p')
 		ft_specifier_triple(format, a_list, fl);
-	ft_putstr_fda(fl->str, 1, fl);
-	free(fl->some);
+	if (format[fl->o] != 'c')
+		ft_putstr_fda(fl->str, 1, fl);
 	return (fl->str);
 }
